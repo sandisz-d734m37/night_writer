@@ -5,5 +5,6 @@ describe NightWriter do
 
   it "exists" do
     expect(night_writer).to be_a NightWriter
+    
   end
 end
