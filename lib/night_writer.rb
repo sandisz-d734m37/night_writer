@@ -7,7 +7,7 @@ class NightWriter
 
   def readfile
   nothing = @message.read
-  @braille.write
+  @braille.write.upcase
   @message.close
   @braille.close
   end
