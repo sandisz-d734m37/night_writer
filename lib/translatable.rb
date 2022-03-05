@@ -73,5 +73,4 @@ module Translatable
     split_arrays.each { |row| translated_chars << row.join("\n") }
     translated_chars
   end
-
 end

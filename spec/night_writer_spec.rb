@@ -33,16 +33,8 @@ RSpec.describe NightWriter do
     expect(File.open(test_braille.path).readlines.length).to eq(3)
   end
 
-  it "can print to the terminal" do
-    expect { night_writer }.to output("Created file '#{ARGV[1]}' containing 62 characters\n").to_stdout
-  end
-
-  it "can count characters in the new file" do
-    spec_writer = NightWriter.new(arguments)
-    spec_writer.readfile
-    expected = spec_writer.count_characters(test_braille)
-    # binding.pry
-    expect expected == 63
+  it "can count characters in the message file print to the terminal" do
+    expect { night_writer }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
   end
 end
 

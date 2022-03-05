@@ -10,8 +10,8 @@ class NightWriter
   include Translatable
 
   def readfile
-  nothing = @message.read
-  @braille.write(translate_to_braille(nothing))
+  to_translate = @message.read
+  @braille.write(translate_to_braille(to_translate))
   @message.close
   @braille.close
   print_to_terminal
@@ -24,7 +24,7 @@ class NightWriter
   end
 
   def print_to_terminal
-    puts "Created file '#{ARGV[1]}' containing #{count_characters(@braille)} characters"
+    puts "Created file '#{ARGV[1]}' containing #{count_characters(@message)} characters"
   end
 end
 
