@@ -74,4 +74,28 @@ RSpec.describe "Translatable" do
   it "can translate english to braille" do
     expect(night_writer.translate_to_braille("x")).to eq("00\n..\n00")
   end
+
+  it "will not break if passed a non-alphabetic or uppercase character" do
+    expect(night_writer.translate_to_braille("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xX......")).to eq("00 00\n.. ..\n00 00")
+  end
+
+  it "can remove unwanted characters" do
+    expect(night_writer.remove_unwanted_char("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xX......")).to eq("xx")
+  end
+
+  it "uses helper methods to clean the lines up" do
+    # Similar to the tests above, these tests use "xx" as it walks through
+    # the steps of translation
+    expect(night_writer.make_array("~00|..|00~~00|..|00~")).to eq([["00", "..", "00"], ["00", "..", "00"]])
+    expect(night_writer.array_to_text([["00", "..", "00"], ["00", "..", "00"]])).to eq(["00 00", ".. ..", "00 00"])
+    expect(night_writer.split_lines_by_three(["00 00", ".. ..", "00 00"])).to eq(["00 00\n.. ..\n00 00"])
+    # At the end of the clean_lines method (where these helpers are used), it
+    # finally takes the text out of the array using .join
+  end
+
+  it "can clean up pre-translated text" do
+    # This test is the complete version of the helpers above
+    expect(night_writer.clean_lines("~00|..|00~~00|..|00~")).to eq("00 00\n.. ..\n00 00")
+  end
+
 end

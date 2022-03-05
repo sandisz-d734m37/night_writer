@@ -1,6 +1,5 @@
 module Translatable
   def translate_to_braille(text)
-    text.downcase!
     shortened_text = remove_unwanted_char(text)
 
     translated_text = shortened_text.each_char do |char|
@@ -37,6 +36,7 @@ module Translatable
   end
 
   def remove_unwanted_char(text)
+    text.downcase!
     text.each_char do |char|
       if !"abcdefghijklmnopqrstuvwxyz".include?(char)
         text.delete!(char)
