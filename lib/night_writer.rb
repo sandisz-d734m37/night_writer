@@ -1,3 +1,4 @@
+require 'pry'
 class NightWriter
   attr_reader :message, :braille
   def initialize(args)
@@ -10,6 +11,17 @@ class NightWriter
   @braille.write(nothing.upcase)
   @message.close
   @braille.close
+  print_to_terminal
+  # binding.pry
+  end
+
+  def count_characters(file)
+    text = File.read(file)
+    text.length
+  end
+
+  def print_to_terminal
+    puts "Created file '#{ARGV[1]}' containing #{count_characters(@braille)} characters"
   end
 end
 
