@@ -30,19 +30,19 @@ RSpec.describe NightWriter do
 
   it "can modify text and write to a file" do
     night_writer
-    expect(File.open(test_braille.path).readlines).to eq(["NOTHING"])
+    expect(File.open(test_braille.path).readlines.length).to eq(3)
   end
 
   it "can print to the terminal" do
-    expect { night_writer }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
+    expect { night_writer }.to output("Created file '#{ARGV[1]}' containing 62 characters\n").to_stdout
   end
 
-  it "can print to the terminal" do
+  it "can count characters in the new file" do
     spec_writer = NightWriter.new(arguments)
     spec_writer.readfile
     expected = spec_writer.count_characters(test_braille)
     # binding.pry
-    expect expected == 7
+    expect expected == 63
   end
 end
 
@@ -72,7 +72,6 @@ RSpec.describe "Translatable" do
   end
 
   it "can translate english to braille" do
-    night_writer.readfile
-    expect(File.open(test_braille.path).readlines.length).to eq(3)
+    expect(night_writer.translate_to_braille("x")).to eq("00\n..\n00")
   end
 end

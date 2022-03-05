@@ -1,4 +1,5 @@
 require 'pry'
+require_relative 'translatable'
 class NightWriter
   attr_reader :message, :braille
   def initialize(args)
@@ -6,9 +7,11 @@ class NightWriter
     @braille = File.open(args[1], "w")
   end
 
+  include Translatable
+
   def readfile
   nothing = @message.read
-  @braille.write(nothing.upcase)
+  @braille.write(translate_to_braille(nothing))
   @message.close
   @braille.close
   print_to_terminal
