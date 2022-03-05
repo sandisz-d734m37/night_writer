@@ -1,8 +1,9 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/sandiszthieme/turing/1module/projects/night_writer/spec/night_writer_spec.rb": {
+      "/Users/sandiszthieme/turing/1module/projects/night_writer/spec/night_writer_class_spec.rb": {
         "lines": [
+          1,
           1,
           1,
           null,
@@ -102,36 +103,41 @@
         "lines": [
           1,
           1,
-          1,
-          1,
-          1,
-          11,
-          11,
-          null,
-          null,
-          1,
-          null,
-          1,
-          4,
-          4,
-          4,
-          4,
-          4,
-          null,
-          null,
-          null,
-          1,
-          4,
-          4,
-          null,
-          null,
-          1,
-          4,
-          null,
-          null,
           null,
           1,
           0,
+          null
+        ]
+      },
+      "/Users/sandiszthieme/turing/1module/projects/night_writer/lib/night_writer_class.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          11,
+          11,
+          null,
+          null,
+          1,
+          null,
+          1,
+          4,
+          4,
+          4,
+          4,
+          4,
+          null,
+          null,
+          null,
+          1,
+          4,
+          4,
+          null,
+          null,
+          1,
+          4,
+          null,
           null
         ]
       },
@@ -216,6 +222,6 @@
         ]
       }
     },
-    "timestamp": 1646519560
+    "timestamp": 1646519891
   }
 }
