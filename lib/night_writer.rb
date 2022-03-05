@@ -1,4 +1,7 @@
 class NightWriter
-  def initialize
+  attr_reader :message, :braille
+  def initialize(args)
+    @message = File.open(args[0], "r")
+    @braille = File.open(args[1], "w")
   end
 end
