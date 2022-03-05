@@ -32,4 +32,8 @@ RSpec.describe NightWriter do
     subject
     expect(File.open(test_braille.path).readlines).to eq(["NOTHING"])
   end
+
+  it "can print to the terminal" do
+    expect { subject }.to output("Created 'test_braille.txt' containing 7 characters").to_stdout
+  end
 end
