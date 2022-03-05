@@ -4,4 +4,15 @@ class NightWriter
     @message = File.open(args[0], "r")
     @braille = File.open(args[1], "w")
   end
+
+  def readfile
+  nothing = @message.read
+  @braille.write
+  @message.close
+  @braille.close
+  end
+end
+
+if $PROGRAM_NAME == __FILE__
+  NightWriter.new(ARGV).readfile
 end
