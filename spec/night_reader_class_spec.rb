@@ -21,4 +21,14 @@ RSpec.describe NightReader do
     night_reader.readfile
     expect(night_reader).to be_a NightReader
   end
+
+  it "can open a file" do
+    night_reader.readfile
+    expect(File.open(test_braille.path).readlines).to eq(["00\n..\n00"])
+  end
+
+  it "can write to a file" do
+    night_reader.readfile
+    expect(File.open(test_og_message.path).readlines).to eq(["00\n..\n00"])
+  end
 end

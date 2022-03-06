@@ -8,7 +8,7 @@ class NightReader
 
   def readfile
   to_translate = @braille.read
-  @og_message.write(to_translate.capitalize)
+  @og_message.write(to_translate)
   @braille.close
   @og_message.close
   end
