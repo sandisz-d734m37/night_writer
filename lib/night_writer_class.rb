@@ -19,6 +19,7 @@ class NightWriter
 
   def count_characters(file)
     text = File.read(file)
+    text = remove_unwanted_char(text)
     text.length
   end
 
