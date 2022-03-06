@@ -1,15 +1,22 @@
 require 'pry'
+require_relative 'night_writeable'
+require_relative 'untranslatable'
 
 class NightReader
   def initialize(args)
     @braille = File.open(args[0], 'r')
-    @og_message = File.open(args[1], 'w')
+    @message = File.open(args[1], 'w')
   end
+
+  include Untranslatable
 
   def readfile
   to_translate = @braille.read
-  @og_message.write(to_translate)
+  @message.write(to_translate)
   @braille.close
-  @og_message.close
+  @message.close
+  print_to_terminal
   end
+
+  include NightWriteable
 end
