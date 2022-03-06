@@ -1,4 +1,8 @@
 module Untranslatable
+
+  
+
+
   def remove_unwanted_char(text)
     text.downcase!
     text.each_char do |char|
