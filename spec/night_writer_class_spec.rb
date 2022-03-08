@@ -73,11 +73,11 @@ RSpec.describe "Translatable" do
   end
 
   it "will not break if passed a non-alphabetic or uppercase character" do
-    expect(night_writer.translate_to_braille("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xX......")).to eq("00 00\n.. ..\n00 00")
+    expect(night_writer.translate_to_braille("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xx......")).to eq("00 00\n.. ..\n00 00")
   end
 
   it "can remove unwanted characters" do
-    expect(night_writer.remove_unwanted_char("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xX......")).to eq("xx")
+    expect(night_writer.remove_unwanted_char("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xx......")).to eq("xx")
   end
 
   it "uses helper methods to clean the lines up" do
@@ -95,4 +95,26 @@ RSpec.describe "Translatable" do
     expect(night_writer.clean_lines("~00|..|00~~00|..|00~")).to eq("00 00\n.. ..\n00 00")
   end
 
+end
+
+describe NightWriter do
+  let(:night_writer) { NightWriter.new(arguments) }
+
+  let(:arguments) { [test_message.path, test_braille.path] }
+  let(:test_braille) { Tempfile.new('txt')}
+  let(:test_message) do
+    Tempfile.new('txt').tap do |msg|
+      msg << "ABC"
+      msg.close
+    end
+  end
+
+  after do
+    test_message.unlink
+    test_braille.unlink
+  end
+
+  it 'can translate capital letters' do
+    expect(night_writer.translate_to_braille(test_message.open.read)).to eq(".. 0. .. 0. .. 00\n.. .. .. 0. .. ..\n.0 .. .0 .. .0 ..")
+  end
 end
