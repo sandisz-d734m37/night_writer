@@ -69,11 +69,11 @@ RSpec.describe "Translatable" do
   end
 
   it "will not break if passed a non-alphabetic or uppercase character" do
-    expect(night_writer.translate_to_braille("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xX......")).to eq("00 00\n.. ..\n00 00")
+    expect(night_writer.translate_to_braille("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xx......")).to eq("00 00\n.. ..\n00 00")
   end
 
   it "can remove unwanted characters" do
-    expect(night_writer.remove_unwanted_char("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xX......")).to eq("xx")
+    expect(night_writer.remove_unwanted_char("!@#$%&())(*)}/>,<+}][{}]|\||\n\n\n\n...xx......")).to eq("xx")
   end
 
   it "uses helper methods to clean the lines up" do
