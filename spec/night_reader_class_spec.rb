@@ -20,6 +20,8 @@ RSpec.describe NightReader do
   it "exists" do
     night_reader.readfile
     expect(night_reader).to be_a NightReader
+    expect(night_reader.braille).to be_a File
+    expect(night_reader.message).to be_a File
   end
 
   it "can open a file" do
@@ -30,6 +32,11 @@ RSpec.describe NightReader do
   it "can write to a file" do
     night_reader.readfile
     expect(File.open(test_og_message.path).readlines).to eq(["x"])
+  end
+
+  it "can count characters in a file" do
+    night_reader.readfile
+    expect(night_reader.count_characters(test_og_message)).to eq(1)
   end
 
   it "can count characters in the message file and print to the terminal" do
@@ -81,7 +88,4 @@ describe  "Untranslatable" do
   it "will translate capitalized letter back to lowercase" do
     expect(night_reader.translate_from_braille(".. 00\n.. ..\n.0 00")).to eq("x")
   end
-
-
-
 end

@@ -3,6 +3,7 @@ require_relative 'night_writeable'
 require_relative 'untranslatable'
 
 class NightReader
+  attr_reader :message, :braille
   def initialize(args)
     @braille = File.open(args[0], 'r')
     @message = File.open(args[1], 'w')

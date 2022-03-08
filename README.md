@@ -1,4 +1,4 @@
-#_NIGHT WRITER_
+# _NIGHT WRITER_
 
 Night Writer is a program you can use to take regular text written in one file, and translate it to braille in another, new or overwritten file!
 

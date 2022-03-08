@@ -10,11 +10,11 @@ class NightWriter
   include Translatable
 
   def readfile
-  to_translate = @message.read
-  @braille.write(translate_to_braille(to_translate))
-  @message.close
-  @braille.close
-  print_to_terminal
+    to_translate = @message.read
+    @braille.write(translate_to_braille(to_translate))
+    @message.close
+    @braille.close
+    print_to_terminal
   end
 
   include NightWriteable
