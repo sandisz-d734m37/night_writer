@@ -24,11 +24,12 @@ RSpec.describe NightWriter do
   end
 
   it "can open a file" do
+    # binding.pry
     expect(night_writer.message.readlines).to eq(["nothing"])
   end
 
   it "can modify text and write to a file" do
-    night_writer
+    night_writer.readfile
     expect(File.open(test_braille.path).readlines.length).to eq(3)
   end
 
