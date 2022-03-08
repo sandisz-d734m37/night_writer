@@ -70,6 +70,13 @@ describe  "Untranslatable" do
   end
 
   it "can also remove unwanted characters" do
-    expect(night_reader.remove_unwanted_char("1234567890*&^%${@!<>?,./-=_+AbcDEfGh")).to eq("abcdefgh")
+    expect(night_reader.remove_unwanted_char(["..|..|.0", "00|..|00"])).to eq(["00|..|00"])
   end
+
+  it "will translate capitalized letter back to lowercase" do
+    expect(night_reader.translate_from_braille(".. 00\n.. ..\n.0 00")).to eq("x")
+  end
+
+
+
 end
