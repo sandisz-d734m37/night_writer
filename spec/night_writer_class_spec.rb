@@ -34,8 +34,13 @@ RSpec.describe NightWriter do
   end
 
   it "can count characters in the message file print to the terminal" do
+    expect{ night_writer.print_to_terminal }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
+  end
+
+  it "will print to the terminal whne it runs" do
     expect{ night_writer.readfile }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
   end
+
 end
 
 RSpec.describe "Translatable" do
