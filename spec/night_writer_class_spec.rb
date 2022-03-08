@@ -111,7 +111,6 @@ describe NightWriter do
   end
 
   it 'can translate capital letters' do
-    # binding.pry
     expect(night_writer.translate_to_braille(test_message.open.read)).to eq(".. 0. .. 0. .. 00\n.. .. .. 0. .. ..\n.0 .. .0 .. .0 ..")
   end
 end
