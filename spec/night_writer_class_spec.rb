@@ -3,7 +3,7 @@ require './lib/night_writer_class'
 require 'tempfile'
 
 RSpec.describe NightWriter do
-  let(:night_writer) { NightWriter.new(arguments).readfile }
+  let(:night_writer) { NightWriter.new(arguments) }
 
   let(:arguments) { [test_message.path, test_braille.path] }
   let(:test_braille) { Tempfile.new('txt')}
@@ -20,23 +20,27 @@ RSpec.describe NightWriter do
   end
 
   it "exists" do
-    night_writer
-    expect(NightWriter.new(arguments)).to be_a NightWriter
+    expect(night_writer).to be_a NightWriter
   end
 
   it "can open a file" do
-    night_writer
-    expect(File.open(test_message.path).readlines).to eq(["nothing"])
+    # binding.pry
+    expect(night_writer.message.readlines).to eq(["nothing"])
   end
 
   it "can modify text and write to a file" do
-    night_writer
+    night_writer.readfile
     expect(File.open(test_braille.path).readlines.length).to eq(3)
   end
 
   it "can count characters in the message file print to the terminal" do
-    expect { night_writer }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
+    expect{ night_writer.print_to_terminal }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
   end
+
+  it "will print to the terminal whne it runs" do
+    expect{ night_writer.readfile }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
+  end
+
 end
 
 RSpec.describe "Translatable" do
