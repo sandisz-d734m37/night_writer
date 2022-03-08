@@ -20,7 +20,10 @@ RSpec.describe NightWriter do
   end
 
   it "exists" do
+    # binding.pry
     expect(night_writer).to be_a NightWriter
+    expect(night_writer.message).to be_a File
+    expect(night_writer.braille).to be_a File
   end
 
   it "can open a file" do
@@ -32,6 +35,10 @@ RSpec.describe NightWriter do
     expect(File.open(test_braille.path).readlines.length).to eq(3)
   end
 
+  it "can count characters in a file" do
+    expect(night_writer.count_characters(test_message)).to eq(7)
+  end
+
   it "can count characters in the message file print to the terminal" do
     expect{ night_writer.print_to_terminal }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
   end
@@ -39,7 +46,6 @@ RSpec.describe NightWriter do
   it "will print to the terminal when it runs" do
     expect{ night_writer.readfile }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
   end
-
 end
 
 RSpec.describe "Translatable" do
@@ -93,7 +99,6 @@ RSpec.describe "Translatable" do
     # This test is the complete version of the helpers above
     expect(night_writer.clean_lines("~00|..|00~~00|..|00~")).to eq("00 00\n.. ..\n00 00")
   end
-
 end
 
 describe NightWriter do
