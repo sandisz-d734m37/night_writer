@@ -1,24 +1,6 @@
 module Untranslatable
   def translate_from_braille(text)
-    to_prepare = text.split("\n")
-    until to_prepare[3].nil? do
-      to_prepare = to_prepare.each_with_index.map{|line, index|
-        thing = line + " " + to_prepare[index + 3] if to_prepare[index + 3]
-        to_prepare[index + 3].clear if to_prepare[index + 3]
-        thing
-      }
-    end
-    to_prepare.reject! {|line| line.nil?}
-    if to_prepare[0].length > 2
-      to_prepare = to_prepare.map {|line| line.split(" ")}
-      to_prepare = to_prepare.transpose
-      prepared_text = to_prepare.map{|line| line.join("|")}
-    else
-      prepared_text = []
-      prepared_text << to_prepare.join("|")
-      # binding.pry
-    end
-
+    prepared_text = clean_lines(text)
 
     translated_text = []
     prepared_text.each do |char|
@@ -52,8 +34,6 @@ module Untranslatable
       translated_text << char.gsub("..|..|..", " ") if char == "..|..|.."
     end
 
-    # clean_lines(translated_text)
-
     translated_text.join("")
   end
 
@@ -66,34 +46,34 @@ module Untranslatable
     end
   end
 
-  # def clean_lines(text)
-  #   text_to_clean = make_array(text)
-  #   joined_arrays = array_to_text(text_to_clean)
-  #   translated_chars = split_lines_by_three(joined_arrays)
-  #   translated_chars.join "\n"
-  # end
-  #
-  # def make_array(text)
-  #   partial_array = text.each_slice(40).to_a
-  #   two_d_array = partial_array.map{|array| array.split("|")}
-  #   text_to_clean = two_d_array.reject{|array| array.empty? || array[0] == "\n"}
-  # end
-  #
-  # def array_to_text(text)
-  #   fourty_char_arrays = text.each_slice(40).to_a
-  #   transposed_arrays = fourty_char_arrays.map { |row| row.transpose }
-  #   joined_arrays = []
-  #   transposed_arrays.each do |row|
-  #     row.each { |sub_row| joined_arrays << sub_row.join(" ") }
-  #   end
-  #   joined_arrays
-  # end
-  #
-  # def split_lines_by_three(text)
-  #   split_arrays = text.each_slice(3).to_a
-  #   translated_chars = []
-  #   split_arrays.each { |row| translated_chars << row.join("\n") }
-  #   translated_chars
-  # end
+  def clean_lines(text)
+    prepped = prep_text(text)
+    split_transpose_join(prepped)
+  end
 
+  def prep_text(text)
+    to_prepare = text.split("\n")
+    until to_prepare[3].nil? do
+      to_prepare = to_prepare.each_with_index.map{|line, index|
+        prepped_line = line + " " + to_prepare[index + 3] if to_prepare[index + 3]
+        to_prepare[index + 3].clear if to_prepare[index + 3]
+        prepped_line
+      }
+    end
+    to_prepare.reject! {|line| line.nil?}
+    to_prepare
+  end
+
+  def split_transpose_join(text)
+    if text[0].length > 2
+      text = text.map {|line| line.split(" ")}
+      text = text.transpose
+      prepared_text = text.map{|line| line.join("|")}
+    else
+      prepared_text = []
+      prepared_text << text.join("|")
+      # binding.pry
+    end
+    prepared_text
+  end
 end
