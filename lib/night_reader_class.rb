@@ -12,11 +12,11 @@ class NightReader
   include Untranslatable
 
   def readfile
-  to_translate = @braille.read
-  @message.write(translate_from_braille(to_translate))
-  @braille.close
-  @message.close
-  print_to_terminal
+    to_translate = @braille.read
+    @message.write(translate_from_braille(to_translate))
+    @braille.close
+    @message.close
+    print_to_terminal
   end
 
   include NightWriteable
