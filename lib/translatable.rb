@@ -15,7 +15,7 @@ module Translatable
       text['j'] = "~.0|00|..~" if char == 'j'
       text['k'] = "~0.|..|0.~" if char == 'k'
       text['l'] = "~0.|0.|0.~" if char == 'l'
-      text['m'] = "~00|..|00~" if char == 'm'
+      text['m'] = "~00|..|0.~" if char == 'm'
       text['n'] = "~00|.0|0.~" if char == 'n'
       text['o'] = "~0.|.0|0.~" if char == 'o'
       text['p'] = "~00|0.|0.~" if char == 'p'
@@ -38,7 +38,7 @@ module Translatable
   def remove_unwanted_char(text)
     text.downcase!
     text.each_char do |char|
-      if !"abcdefghijklmnopqrstuvwxyz".include?(char)
+      if !"abcdefghijklmnopqrstuvwxyz ".include?(char)
         text.delete!(char)
       end
     end

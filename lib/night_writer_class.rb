@@ -1,4 +1,5 @@
 require_relative 'translatable'
+require_relative 'night_writeable'
 class NightWriter
   attr_reader :message, :braille
   def initialize(args)
@@ -17,12 +18,15 @@ class NightWriter
   # binding.pry
   end
 
-  def count_characters(file)
-    text = File.read(file)
-    text.length
-  end
+  include NightWriteable
 
-  def print_to_terminal
-    puts "Created file '#{ARGV[1]}' containing #{count_characters(@message)} characters"
-  end
+  # def count_characters(file)
+  #   text = File.read(file)
+  #   text = remove_unwanted_char(text)
+  #   text.length
+  # end
+  #
+  # def print_to_terminal
+  #   puts "Created file '#{ARGV[1]}' containing #{count_characters(@message)} characters"
+  # end
 end
