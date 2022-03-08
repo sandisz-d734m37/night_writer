@@ -111,6 +111,7 @@ describe NightWriter do
   end
 
   it 'can translate capital letters' do
+    binding.pry
     expect(night_writer.readfile).to eq(".. 0. .. 0. .. 00\n.. .. .. 0. .. ..\n.0 .. .0 .. .0 ..")
   end
 end
