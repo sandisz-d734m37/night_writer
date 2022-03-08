@@ -92,3 +92,25 @@ RSpec.describe "Translatable" do
   end
 
 end
+
+describe NightWriter do
+  let(:night_writer) { NightWriter.new(arguments) }
+
+  let(:arguments) { [test_message.path, test_braille.path] }
+  let(:test_braille) { Tempfile.new('txt')}
+  let(:test_message) do
+    Tempfile.new('txt').tap do |msg|
+      msg << "ABC"
+      msg.close
+    end
+  end
+
+  after do
+    test_message.unlink
+    test_braille.unlink
+  end
+
+  it 'can translate capital letters' do
+    expect(night_writer.readfile).to eq(".. 0. .. 0. .. 00\n.. .. .. 0. .. ..\n.0 .. .0 .. .0 ..")
+  end
+end
