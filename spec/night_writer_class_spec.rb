@@ -3,7 +3,7 @@ require './lib/night_writer_class'
 require 'tempfile'
 
 RSpec.describe NightWriter do
-  let(:night_writer) { NightWriter.new(arguments).readfile }
+  let(:night_writer) { NightWriter.new(arguments) }
 
   let(:arguments) { [test_message.path, test_braille.path] }
   let(:test_braille) { Tempfile.new('txt')}
