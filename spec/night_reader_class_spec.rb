@@ -33,6 +33,11 @@ RSpec.describe NightReader do
   end
 
   it "can count characters in the message file print to the terminal" do
+    night_reader.readfile
+    expect{ night_reader.print_to_terminal }.to output("Created file '#{ARGV[1]}' containing 1 characters\n").to_stdout
+  end
+
+  it "will print to the terminal when it runs" do
     expect { night_reader.readfile }.to output("Created file '#{ARGV[1]}' containing 1 characters\n").to_stdout
   end
 end
