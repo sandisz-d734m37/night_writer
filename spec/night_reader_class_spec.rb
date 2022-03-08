@@ -102,7 +102,7 @@ describe "prep_text edge case" do
   let(:test_braille) { Tempfile.new('txt')}
   let(:test_message) do
     Tempfile.new('txt').tap do |msg|
-      msg << "!@$%^&*()_+}xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx..><,.///?"
+      msg << "!@$%^&*(123xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx..><,.///?"
       msg.close
     end
   end
