@@ -24,8 +24,7 @@ RSpec.describe NightWriter do
   end
 
   it "can open a file" do
-    night_writer
-    expect(File.open(test_message.path).readlines).to eq(["nothing"])
+    expect(night_writer.message.readlines).to eq(["nothing"])
   end
 
   it "can modify text and write to a file" do
