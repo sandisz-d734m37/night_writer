@@ -1,12 +1,10 @@
 module Untranslatable
   def translate_from_braille(text)
-    # binding.pry
     prepared_text = clean_lines(text)
     shortened_text = remove_unwanted_char(prepared_text)
 
     translated_text = []
     shortened_text.each do |char|
-      # binding.pry
       translated_text << char.gsub("0.|..|..", "a") if char == "0.|..|.."
       translated_text << char.gsub("0.|0.|..", "b") if char == "0.|0.|.."
       translated_text << char.gsub("00|..|..", "c") if char == "00|..|.."
@@ -76,9 +74,7 @@ module Untranslatable
     else
       prepared_text = []
       prepared_text << text.join("|")
-      # binding.pry
     end
     prepared_text
-    # binding.pry
   end
 end

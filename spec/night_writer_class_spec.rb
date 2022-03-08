@@ -24,7 +24,6 @@ RSpec.describe NightWriter do
   end
 
   it "can open a file" do
-    # binding.pry
     expect(night_writer.message.readlines).to eq(["nothing"])
   end
 
@@ -37,7 +36,7 @@ RSpec.describe NightWriter do
     expect{ night_writer.print_to_terminal }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
   end
 
-  it "will print to the terminal whne it runs" do
+  it "will print to the terminal when it runs" do
     expect{ night_writer.readfile }.to output("Created file '#{ARGV[1]}' containing 7 characters\n").to_stdout
   end
 
