@@ -1,5 +1,6 @@
 module Untranslatable
   def translate_from_braille(text)
+    # binding.pry
     prepared_text = clean_lines(text)
 
     translated_text = []
@@ -75,5 +76,6 @@ module Untranslatable
       # binding.pry
     end
     prepared_text
+    # binding.pry
   end
 end

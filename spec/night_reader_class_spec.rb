@@ -58,4 +58,18 @@ describe  "Untranslatable" do
     night_reader.readfile
     expect(File.open(test_og_message.path).readlines).to eq(["x"])
   end
+
+  it "has helper methods" do
+    expect(night_reader.clean_lines("00 00\n.. ..\n00 00")).to eq(["00|..|00", "00|..|00"])
+    expect(night_reader.translate_from_braille("00 00\n.. ..\n00 00")).to eq("xx")
+  end
+
+  it "has helper methods for it's hlper methods" do
+    expect(night_reader.prep_text("00 00\n.. ..\n00 00")).to eq(["00 00", ".. ..", "00 00"])
+    expect(night_reader.split_transpose_join(["00 00", ".. ..", "00 00"])).to eq(["00|..|00", "00|..|00"])
+  end
+
+  it "can also remove unwanted characters" do
+    expect(night_reader.remove_unwanted_char("1234567890*&^%${@!<>?,./-=_+AbcDEfGh")).to eq("abcdefgh")
+  end
 end
