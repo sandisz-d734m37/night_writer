@@ -12,7 +12,7 @@ class NightReader
 
   def readfile
   to_translate = @braille.read
-  @message.write(to_translate)
+  @message.write(translate_from_braille(to_translate))
   @braille.close
   @message.close
   print_to_terminal
