@@ -20,8 +20,7 @@ RSpec.describe NightWriter do
   end
 
   it "exists" do
-    night_writer
-    expect(NightWriter.new(arguments)).to be_a NightWriter
+    expect(night_writer).to be_a NightWriter
   end
 
   it "can open a file" do
