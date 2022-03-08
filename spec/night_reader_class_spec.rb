@@ -29,11 +29,11 @@ RSpec.describe NightReader do
 
   it "can write to a file" do
     night_reader.readfile
-    expect(File.open(test_og_message.path).readlines).to eq(["00\n", "..\n", "00"])
+    expect(File.open(test_og_message.path).readlines).to eq(["x"])
   end
 
   it "can count characters in the message file print to the terminal" do
-    expect { night_reader.readfile }.to output("Created file '#{ARGV[1]}' containing 0 characters\n").to_stdout
+    expect { night_reader.readfile }.to output("Created file '#{ARGV[1]}' containing 1 characters\n").to_stdout
   end
 end
 
@@ -55,6 +55,7 @@ describe  "Untranslatable" do
   end
 
   it "can translate braille to regular english" do
+    night_reader.readfile
     expect(File.open(test_og_message.path).readlines).to eq(["x"])
   end
 end
